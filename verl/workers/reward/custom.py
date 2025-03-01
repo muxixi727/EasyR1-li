@@ -24,7 +24,7 @@ class CustomRewardManager:
     def __init__(self, tokenizer: PreTrainedTokenizer, num_examine: int, compute_score: str, max_length: int):
         self.tokenizer = tokenizer
         self.num_examine = num_examine
-        self.max_length = max_lengths
+        self.max_length = max_length
         if compute_score == "math":
             self.compute_score = math_compute_score
         else:
