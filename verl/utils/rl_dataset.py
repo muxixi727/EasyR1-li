@@ -113,8 +113,10 @@ class RLHFDataset(Dataset):
         
         messages = [
             #{"role": "system", "content": r"Please reason step by step, and put your final answer within \boxed{}."},
-            {"role": "system", "content": r"A conversation between User and Assistant. The user asks a question, and the Assistant solves it. The assistant first thinks about the reasoning process in the mind and then provides the user with the answer. The reasoning process and answer are enclosed within <think> </think> and <answer> </answer> tags, respectively, i.e., <think> reasoning process here </think><answer> answer here </answer>"},
+            # {"role": "system", "content": r"A conversation between User and Assistant. The user asks a question, and the Assistant solves it. The assistant first thinks about the reasoning process in the mind and then provides the user with the answer. The reasoning process and answer are enclosed within <think> </think> and <answer> </answer> tags, respectively, i.e., <think> reasoning process here </think><answer> answer here </answer>"},
+            
             # {"role": "user", "content": row_dict[self.prompt_key]},
+            {"role": "system", "content": r"user与assistant之间的对话。user提出一个问题，assistant予以解答。assistant先在脑海中思考推理过程，然后为user提供答案。推理过程和答案分别用 <think> </think> 和 <answer> </answer> 标签括起来，即 <think> 这里是推理过程 </think><answer> 这里是答案 </answer>"},
             {"role": "user", "content": "<image>请问图中的物体外观是否有异常？ 选项: 异常或正常。"},
         ]
         #print(messages)
