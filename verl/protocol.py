@@ -67,13 +67,6 @@ def pad_dataproto_to_divisor(data: "DataProto", size_divisor: int) -> Tuple["Dat
             padding_protos.append(data[:take_size])
             remaining_pad -= take_size
 
-        #data_padded = DataProto.concat([data] + padding_protos)
-        padding_protos = []
-        remaining_pad = pad_size
-        while remaining_pad > 0:
-            take_size = min(remaining_pad, len(data))
-            padding_protos.append(data[:take_size])
-            remaining_pad -= take_size
         data_padded = DataProto.concat([data] + padding_protos)
     else:
         pad_size = 0
