@@ -14,7 +14,7 @@ def math_compute_score(predict_str: str, ground_truth: str, max_length: int) -> 
 
 def score(predict_str: str, ground_truth: str, max_length: int) -> float:
     for_reward = format_score(predict_str)
-    if format_reward == 0.0:
+    if for_reward == 0.0:
         acc_reward = 0.0
     else:
        acc_reward = accuracy_score(predict_str, ground_truth)
@@ -27,7 +27,7 @@ def cosfn(t, T, min_value, max_value):
     import math
     return max_value - (max_value - min_value) * (1 - math.cos(t * math.pi / T)) / 2
 
-def cos_reward(predict_str: str, acc_reward: float, max_length: int) -> float:
+def cosine_score(predict_str: str, acc_reward: float, max_length: int) -> float:
     is_correct = acc_reward >= 1
     if is_correct:
         # 对于正确答案，交换 min/max
@@ -43,18 +43,21 @@ def cos_reward(predict_str: str, acc_reward: float, max_length: int) -> float:
     return reward
 
 def accuracy_score(predict_str: str, ground_truth: str) -> float:
-    sol_match = re.search(r'<answer>(.*?)</answer>', predict_str, reDOTALL)
+    sol_match = re.search(r'<answer>(.*?)</answer>', predict_str, re.DOTALL)
     answer = sol_match.group(1).strip()
-
+    if ground_truth == "A":
+        ground_truth = "异常"
+    else:
+        ground_truth = "正常"
     # Check if the answer matches the ground truth
     if answer == ground_truth:
         return 1.0
-    else if ground_truth in answer:
+    elif ground_truth in answer:
         return 0.3
     else:
         return 0.0
 
 def format_score(predict_str: str) -> float:
     pattern = r'^<think>.*?</think>\s*<answer>.*?</answer>(?![\s\S])'
-    matches = re.match(pattern, predict_str, re.DOTALL | re.MULTILINE)
+    match = re.match(pattern, predict_str, re.DOTALL | re.MULTILINE)
     return 1.0 if match else 0.0
