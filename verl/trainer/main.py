@@ -74,7 +74,7 @@ def main_task(config: PPOConfig):
         tokenizer=tokenizer, num_examine=1, compute_score=config.worker.reward.compute_score, max_length = config.data.max_response_length
     )
     val_reward_fn = CustomRewardManager(
-        tokenizer=tokenizer, num_examine=1, compute_score=config.worker.reward.compute_score
+        tokenizer=tokenizer, num_examine=1, compute_score=config.worker.reward.compute_score, max_length = config.data.max_response_length
     )
 
     resource_pool_manager = ResourcePoolManager(resource_pool_spec=resource_pool_spec, mapping=mapping)
