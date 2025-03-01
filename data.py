@@ -86,6 +86,6 @@ def process_data(input_file):
 
 if __name__ == "__main__":
     # input_files = ['/lpai/EasyR1/data/train_data.json']
-    input_files = ['/lpai/dataset/anomaly-detection-parquet/0-1-0/test_data.json', '/lpai/dataset/anomaly-detection-parquet/0-1-0/train_data.json']
+    input_files = ['/lpai/dataset/anomaly-detection-parquet/0-1-0/data/test_data.json', '/lpai/dataset/anomaly-detection-parquet/0-1-0/data/train_data.json']
     for file in input_files:# 填入你的 JSON 文件路径列表
         process_data(file)
